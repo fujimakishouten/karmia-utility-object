@@ -91,4 +91,101 @@ describe('karmia-utility-object', function () {
             });
         });
     });
+
+    describe('removeProperty', function () {
+        describe('Should remove property', function () {
+            it('Should remove top level property', function () {
+                const object = {a: 'A', b: 'B', c: 'C', d: 1, e: 2, f: 3},
+                    result = kobject.removeProperty(object, 'c');
+
+                expect(result).to.have.keys(['a', 'b', 'd', 'e', 'f']);
+                expect(result).to.not.have.key('c');
+            });
+
+            it('Should remove deep level property', function () {
+                const object = {
+                        a: {
+                            b: {
+                                c: {
+                                    d: {
+                                        e: {
+                                            f: 'value'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    result = kobject.removeProperty(object, 'e');
+
+                expect(result).to.eql({
+                    a: {
+                        b: {
+                            c: {
+                                d: {}
+                            }
+                        }
+                    }
+                });
+            });
+
+            it('Should remove multi level properties', function () {
+                const object = {
+                        a: {
+                            a: {
+                                key: {}
+                            }
+                        },
+                        b: {
+                            b: {
+                                b: {
+                                    b: {
+                                        key: {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    result = kobject.removeProperty(object, 'key');
+
+                expect(result).to.eql({
+                    a: {
+                        a: {}
+                    },
+                    b: {
+                        b: {
+                            b: {
+                                b: {}
+                            }
+                        }
+                    }
+                });
+            });
+
+            it('Should remove multi properties', function () {
+                const object = {
+                        a: {
+                            a: {
+                                a1: {}
+                            }
+                        },
+                        b: {
+                            b: {
+                                b1: {}
+                            }
+                        }
+                    },
+                    result = kobject.removeProperty(object, ['a1', 'b1']);
+
+                expect(result).to.eql({
+                    a: {
+                        a: {}
+                    },
+                    b: {
+                        b: {}
+                    }
+                });
+            });
+        });
+    });
 });
