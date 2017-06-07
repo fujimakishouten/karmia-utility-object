@@ -92,6 +92,97 @@ describe('karmia-utility-object', function () {
         });
     });
 
+    describe('mergeProperties', function () {
+        it('Should merge property', function () {
+            const object1 = {
+                    a: 'A',
+                    b: {
+                        c: 'C',
+                        d: {
+                            e: 'E',
+                            f: {
+                                g: 'G',
+                                h: {
+                                    i: 'I',
+                                    j: {
+                                        k: 'K',
+                                        l: {
+                                            m: 'M'
+                                        },
+                                        n: {
+                                            o: 'O'
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                object2 = {
+                    b: {
+                        d: {
+                            f: {
+                                g: 'G-2',
+                                h: {
+                                    j: {
+                                        n: 'N',
+                                        o: 'O',
+                                        p: {
+                                            q: 'Q'
+                                        }
+                                    }
+                                }
+                            },
+                            r: 'R',
+                            s: {
+                                t: 'T'
+                            }
+                        }
+                    },
+                    u: 'U',
+                    v: {
+                        w: 'W'
+                    }
+                },
+                result = kobject.mergeProperties(object1, object2);
+
+            expect(result).to.eql({
+                a: 'A',
+                b: {
+                    c: 'C',
+                    d: {
+                        e: 'E',
+                        f: {
+                            g: 'G-2',
+                            h: {
+                                i: 'I',
+                                j: {
+                                    k: 'K',
+                                    l: {
+                                        m: 'M'
+                                    },
+                                    n: 'N',
+                                    o: 'O',
+                                    p: {
+                                        q: 'Q'
+                                    }
+                                }
+                            }
+                        },
+                        r: 'R',
+                        s: {
+                            t: 'T'
+                        }
+                    }
+                },
+                u: 'U',
+                v: {
+                    w: 'W'
+                }
+            });
+        });
+    });
+
     describe('removeProperty', function () {
         describe('Should remove property', function () {
             it('Should remove top level property', function () {
