@@ -8,7 +8,7 @@
 // Variables
 const expect = require('expect.js'),
     karmia_utility_object = require('../lib'),
-    kobject = karmia_utility_object();
+    kobject = new karmia_utility_object();
 
 
 // Test

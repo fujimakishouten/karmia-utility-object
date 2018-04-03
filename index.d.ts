@@ -7,5 +7,4 @@ declare class KarmiaUtilityObject {
     removeProperty(object: object, properties: Array<any>|any): object;
 }
 
-declare function karmia_utility_object(options: object): KarmiaUtilityObject;
-export = karmia_utility_object;
+export = KarmiaUtilityObject;
