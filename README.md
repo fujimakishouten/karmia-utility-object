@@ -3,7 +3,7 @@ Karmia utility object module
 
 ## Usage
 ```javascript
-const karmia_utility_object = require('karmia-utility-object'),
+const karmia_utility_object = require('karmia-utility-object').default,
     kobject = new karmia_utility_object();
 ```
 

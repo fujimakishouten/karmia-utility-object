@@ -105,7 +105,7 @@ class KarmiaUtilityObject {
 
 
 // Export module
-export = KarmiaUtilityObject;
+export default KarmiaUtilityObject;
 
 
 
